@@ -24,3 +24,4 @@ _site/
 # Maven Wrapper
 .mvn/wrapper/maven-wrapper.jar
 package-lock.json
+zipkin-ui/bin
