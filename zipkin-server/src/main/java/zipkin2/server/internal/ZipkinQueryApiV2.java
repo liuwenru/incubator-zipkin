@@ -112,8 +112,20 @@ public class ZipkinQueryApiV2 {
     @Param("maxDuration") Optional<Long> maxDuration,
     @Param("endTs") Optional<Long> endTs,
     @Param("lookback") Optional<Long> lookback,
-    @Default("10") @Param("limit") int limit)
+    @Default("10") @Param("limit") int limit,
+    @Param("tenantGuid") Optional<String> tenantGuid)
     throws IOException {
+    // add by ijarvis
+    // TODO 如果没有传入tenantGuid是否需要直接拒绝访问
+
+    // 添加固定查询内容，加入租户ID信息
+    if (annotationQuery.isPresent()){
+      // 用户添加了自定义查询内容
+      annotationQuery=Optional.of("tenantGuid="+tenantGuid.orElse("")+" and "+annotationQuery.get());
+    }else{
+      annotationQuery=Optional.of("tenantGuid="+tenantGuid.orElse(""));
+    }
+    System.out.println("---------"+annotationQuery.get());
     QueryRequest queryRequest =
       QueryRequest.newBuilder()
         .serviceName(serviceName.orElse(null))
