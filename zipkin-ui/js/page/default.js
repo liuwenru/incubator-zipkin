@@ -58,21 +58,6 @@ const DefaultPageComponent = component(function DefaultPage() {
       return '';
     };
   };
-  this.requestParam=function(paras){
-    var i,j,paras;
-    var url = location.href;
-    var paraString = url.substring(url.indexOf("?")+1,url.length).split("&");
-    var paraObj = {} 
-    for (i=0; j=paraString[i]; i++){ 
-      paraObj[j.substring(0,j.indexOf("="))] = j.substring(j.indexOf("=")+1,j.length); 
-    } 
-    var returnValue = paraObj[paras]; 
-    if(typeof(returnValue)=="undefined"){ 
-      return ""; 
-    }else{ 
-      return returnValue; 
-    }
-  };
   this.after('initialize', function() {
     window.document.title = 'Zipkin - Index';
     if (!this.attr.config('searchEnabled')) {
@@ -93,8 +78,7 @@ const DefaultPageComponent = component(function DefaultPage() {
       const annotationQuery = query.annotationQuery || '';
       const sortOrder = query.sortOrder || 'duration-desc';
       const queryWasPerformed = serviceName && serviceName.length > 0;
-      const tenantGuid=this.requestParam("tenantGuid");
-      console.log(tenantGuid);
+      const tenantguid=query.tenantguid || '';
       this.$node.html(defaultTemplate({
         limit,
         minDuration,
@@ -102,7 +86,7 @@ const DefaultPageComponent = component(function DefaultPage() {
         endTs,
         serviceName,
         annotationQuery,
-        tenantGuid,
+        tenantguid,
         queryWasPerformed,
         contextRoot,
         traceCount: modelView.traces.length,
