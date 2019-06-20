@@ -72,8 +72,10 @@ var webpackConfig = {
             { from: 'static' }
         ])
     ],
+    devtool: 'inline-source-map',
     devServer: {
         historyApiFallback: true,
+        host:"0.0.0.0",
         port: 9090,
         proxy: {
             "/api/*": proxyURL,
