@@ -45,7 +45,8 @@ import zipkin2.server.internal.ui.ZipkinUiConfiguration;
   ZipkinKafkaCollectorConfiguration.class,
   ZipkinRabbitMQCollectorConfiguration.class,
   MetricsHealthController.class,
-  ZipkinPrometheusMetricsConfiguration.class
+  ZipkinPrometheusMetricsConfiguration.class,
+  eCloudAPIController.class
 })
 public class InternalZipkinConfiguration {
 }

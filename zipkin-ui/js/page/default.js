@@ -38,7 +38,14 @@ import {searchDisabled} from '../templates';
 import {contextRoot} from '../publicPath';
 import {i18nInit} from '../component_ui/i18n';
 import bootstrap // eslint-disable-line no-unused-vars
-    from 'bootstrap/dist/js/bootstrap.bundle.min.js';
+from 'bootstrap/dist/js/bootstrap.bundle.min.js';
+
+import sysNamesData from '../component_data/sysName';
+import sysNamesUI from '../component_ui/sysName';
+import ProjectNamesData from '../component_data/ProjectName';
+import ProjectNamesUI from '../component_ui/ProjectName';
+import ContainerNamesData from '../component_data/containerName';
+import ContainerNamesUI from '../component_ui/containerName';
 
 const DefaultPageComponent = component(function DefaultPage() {
   const sortOptions = [
@@ -98,6 +105,12 @@ const DefaultPageComponent = component(function DefaultPage() {
 
       RemoteServiceNamesData.attachTo(document);
       SpanNamesData.attachTo(document);
+      ProjectNamesData.attachTo(document);
+      ProjectNamesUI.attachTo('#projectName');
+      sysNamesData.attachTo(document);
+      sysNamesUI.attachTo('#sysName');
+      ContainerNamesData.attachTo(document);
+      ContainerNamesUI.attachTo('#containerName');
       ServiceNamesData.attachTo(document);
       ServiceNameUI.attachTo('#serviceName');
       RemoteServiceNameUI.attachTo('#remoteServiceName');

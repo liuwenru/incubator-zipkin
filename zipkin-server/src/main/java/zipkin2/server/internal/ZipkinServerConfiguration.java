@@ -68,11 +68,18 @@ public class ZipkinServerConfiguration implements WebMvcConfigurer {
   @Autowired(required = false)
   MetricsHealthController healthController;
 
+  @Autowired(required = false)
+  eCloudAPIController ecloudapicontroller;
+
   @Bean ArmeriaServerConfigurator serverConfigurator() {
     return sb -> {
       if (httpQuery != null) {
         sb.annotatedService(httpQuery);
         sb.annotatedService("/zipkin", httpQuery); // For UI.
+      }
+      if(ecloudapicontroller!=null){
+        sb.annotatedService(ecloudapicontroller);
+        sb.annotatedService("/zipkin", ecloudapicontroller);
       }
       if (httpCollector != null) sb.annotatedService(httpCollector);
       if (healthController != null) sb.annotatedService(healthController);
